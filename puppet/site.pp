@@ -6,7 +6,7 @@ node default {
   include drupal
 
   # Advanced includes.
-  drupal::site { 'drupal': }
+  drupal::site { 'd8': }
 
 }
 

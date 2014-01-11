@@ -3,7 +3,7 @@
 define drupal::site (
   $dir               = '/vagrant/app',
   $domain            = 'dev',
-  $http_port         = '8080',
+  $http_port         = $drupal::params::port,
   $mysql_host        = 'localhost',
 ) {
   # Local /etc/hosts DNS record.
