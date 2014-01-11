@@ -1,0 +1,43 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    puppetlabs/apache (0.9.0)
+      puppetlabs/concat (>= 1.0.0)
+      puppetlabs/stdlib (>= 2.4.0)
+    puppetlabs/apt (1.4.0)
+      puppetlabs/stdlib (>= 2.2.1)
+    puppetlabs/concat (1.1.0-rc1)
+      puppetlabs/stdlib (>= 3.0.0)
+    puppetlabs/mysql (2.1.0)
+      puppetlabs/stdlib (>= 2.2.1)
+    puppetlabs/ntp (3.0.1)
+      puppetlabs/stdlib (>= 0.1.6)
+    puppetlabs/stdlib (4.1.0)
+    saz/locales (2.0.0)
+    saz/timezone (1.2.0)
+    thias/php (0.3.8)
+
+GIT
+  remote: git://github.com/treehouseagency/puppet-pear.git
+  ref: master
+  sha: d504379ce98e6477b720c37c2c5bdfdf26977dd9
+  specs:
+    pear (0.0.1)
+
+PATH
+  remote: ./custom/drupal
+  specs:
+    drupal (0.0.1)
+
+DEPENDENCIES
+  drupal (>= 0)
+  pear (>= 0)
+  puppetlabs/apache (>= 0)
+  puppetlabs/apt (>= 0)
+  puppetlabs/mysql (>= 0)
+  puppetlabs/ntp (>= 0)
+  puppetlabs/stdlib (>= 0)
+  saz/locales (>= 0)
+  saz/timezone (>= 0)
+  thias/php (>= 0)
+

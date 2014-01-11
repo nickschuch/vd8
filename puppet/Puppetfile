@@ -1,0 +1,18 @@
+forge "http://forge.puppetlabs.com"
+
+# Contrib.
+mod 'puppetlabs/apt'
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/mysql'
+mod 'puppetlabs/apache'
+mod 'thias/php'
+mod 'saz/timezone'
+mod 'puppetlabs/ntp'
+mod 'saz/locales'
+
+mod "pear",
+  :git => "git://github.com/treehouseagency/puppet-pear.git"
+
+# Custom.
+mod 'drupal',
+  :path => './custom/drupal'
