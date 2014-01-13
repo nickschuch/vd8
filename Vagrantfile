@@ -7,7 +7,7 @@
 
 box      = 'precise32'
 url      = 'http://files.vagrantup.com/' + box + '.box'
-hostname = 'uts'
+hostname = 'd8'
 domain   = 'dev'
 cpus     = '1'
 ram      = '1024'
@@ -60,11 +60,6 @@ Vagrant.configure("2") do |config|
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   end
 
-  config.vm.provision :puppet do |puppet|
-    puppet.facter         = facts
-    puppet.manifests_path = "puppet"
-    puppet.manifest_file  = "site.pp"
-    puppet.module_path    = "puppet/modules"
-  end
+  config.vm.provision :shell, :path => "puppet/provision.sh"
 
 end

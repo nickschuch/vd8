@@ -7,6 +7,5 @@ class drupal inherits drupal::params {
   include drupal::mysql
   include drupal::locale
   include drupal::php
-  include drupal::pear
 
 }
