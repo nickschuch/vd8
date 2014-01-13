@@ -1,9 +1,10 @@
-Vagrant Drupal 8
-================
+Vagrant Drupal 8 (vd8)
+======================
 
 ## Overview
 
-
+The VD8 project has been created to make sure developers have an easy way to boostrap
+local development on the Drupal 8 project.
 
 ## Install
 
@@ -25,22 +26,7 @@ This also required the autonetwork plugin which can be installed by:
 vagrant plugin install vagrant-auto_network
 ```
 
-### Puppet
-
-For this project you will require puppet and librarian-puppet. These can be installed by:
-
-```
-gem install puppet
-gem install librarian-puppet
-```
-
-The required puppet modules can then be installed by running:
-
-```
-cd puppet && libarian-puppet install
-```
-
-## Usage
+#### Usage
 
 The machine can can be booted by the following command:
 
@@ -58,6 +44,33 @@ More vagrant commands and documenation can be found here:
 
 http://docs.vagrantup.com/v2
 
+## Local DNS
+
+There are many options but the easiest method is to add the following line to your /etc/hosts (or Windows equilent):
+
+```
+127.0.0.1    d8.dev
+```
+
+## Drupal
+
+Checkout the latest HEAD of Drupal 8:
+
+```
+git clone --branch 8.x http://git.drupal.org/project/drupal.git app
+```
+
+Copy the default settings.php file for installation:
+
+```
+sudo scp app/sites/default/default.settings.php app/sites/default/settings.php
+sudo chmod 664 app/sites/default/settings.php
+```
+
+Now (in your browser) go to the below URL and install Drupal 8:
+
+http://d8.dev:8080/core/install.php
+
 ## Versions
 
 These are software versions we know work:
@@ -65,5 +78,3 @@ These are software versions we know work:
 Vagrant: 1.3.5
 Vagrant Auto-network: 0.2.1
 Virtualbox: 4.3.6
-Puppet: 3.4.2
-Librarian Puppet: 0.9.10
