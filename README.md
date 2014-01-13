@@ -3,8 +3,7 @@ Vagrant Drupal 8 (vd8)
 
 ## Overview
 
-The VD8 project has been created to make sure developers have an easy way to boostrap
-local development on the Drupal 8 project.
+The VD8 project has been created to make sure developers have an easy method of boostrapping a local Drupal 8 development environment.
 
 ## Install
 
@@ -34,7 +33,7 @@ The machine can can be booted by the following command:
 vagrant up
 ```
 
-The host can be provisioned with the Puppet manifest by running the following command:
+The host will be provisioned with the Puppet manifest by running the following command:
 
 ```
 vagrant provision
