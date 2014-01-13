@@ -3,7 +3,7 @@ Vagrant Drupal 8 (vd8)
 
 ## Overview
 
-The VD8 project has been created to make sure developers have an easy method of boostrapping a local Drupal 8 development environment.
+The VD8 project has been created to make sure developers have an easy method for boostrapping a local Drupal 8 development environment.
 
 ## Install
 
