@@ -75,6 +75,6 @@ http://d8.dev:8080/core/install.php
 
 These are software versions we know work:
 
-Vagrant: 1.3.5
-Vagrant Auto-network: 0.2.1
-Virtualbox: 4.3.6
+* Vagrant: 1.3.5
+* Vagrant Auto-network: 0.2.1
+* Virtualbox: 4.3.6
