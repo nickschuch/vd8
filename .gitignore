@@ -4,3 +4,5 @@ puppet/modules/*
 puppet/.librarian
 puppet/.tmp
 app
+patches
+vendor

@@ -1,0 +1,67 @@
+<!--
+  name: build.xml
+  description: The main project build file for phing operations. This file can 
+               be overridden with project specific configuration.
+-->
+
+<project name="vd8" default="prepare" phingVersion="2.4.11">
+
+  <!-- We set this to optional as is managed by composer -->
+  <includepath classpath="vendor/nickschuch/drupal-install" />
+  <import file="vendor/nickschuch/drupal-install/build.xml" optional="true" />
+
+  <!--               -->
+  <!--  Properties   -->
+  <!-- ============= -->
+
+  <property name="app.uri" value="http://localhost:8080" />
+  <property name="app.installUrl" value="core/install.php" />
+  
+  <!-- User details. -->
+  <property name="app.email" value="user@example.com" />
+  <property name="app.username" value="admin" />
+  <property name="app.password" value="password" />
+  
+  <!-- Database options -->
+  <property name="app.host" value="127.0.0.1" />
+  <property name="app.database" value="d8" />
+  <property name="app.databaseUser" value="d8" />
+  <property name="app.databasePass" value="d8" />
+  <property name="app.mysql_connect" value="mysql -u${app.databaseUser} -p${app.databasePass} -h${app.host}" />
+
+  <!-- Provide overrides. -->
+  <property file="build.properties" override="true" />
+
+  <!--               -->
+  <!-- Basic targets -->
+  <!-- ============= -->
+
+  <target name="prepare"
+          description="Prepare for build">
+    <exec command="composer install" />
+  </target>
+
+  <!--                -->
+  <!-- Custom targets -->
+  <!-- ============== -->
+
+  <target name="reinstall"
+          description="Reinstall the Drupal 8 site.">
+    <property name="app.default_site" value="${project.basedir}/app/sites/default" />
+
+    <!-- Drop and create the database -->
+    <exec command="${app.mysql_connect} -e 'DROP DATABASE ${app.database}'" />
+    <exec command="${app.mysql_connect} -e 'CREATE DATABASE ${app.database}'" />
+
+    <!-- Ensure the files directory is clean -->
+    <exec command="sudo rm -fR ${app.default_site}/files/*" />
+
+    <!-- Ensure we have a fresh settings.php with correct permissions -->
+    <exec command="sudo scp ${app.default_site}/default.settings.php ${app.default_site}/settings.php" />
+    <exec command="sudo chmod 777 ${app.default_site}/settings.php" />
+
+    <!-- Install the site using Mink -->
+    <phingcall target="install" />
+  </target>
+
+</project>
