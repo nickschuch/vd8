@@ -11,16 +11,12 @@ hostname = 'd8'
 domain   = 'dev'
 cpus     = '1'
 ram      = '1024'
-# The ports to be forwarded from the guest to the host.
-ports    = [
-  { :guest => 8080, :host => 8080 },
-  { :guest => 3306, :host => 3306 },
-]
+
 # These allow for puppet facts to be set. We use these for
 # assigning roles.
 # eg. "drupal" => "true" could setup a Drupal site.
-facts    = {
-  "fqdn"         => hostname + '.' + domain,
+facts = {
+  "fqdn" => hostname + '.' + domain,
 }
 
 ##
@@ -34,11 +30,6 @@ Vagrant.configure("2") do |config|
 
   # Network configured as per bit.ly/1e0ZU1r
   config.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
-
-  # Map the guest ports to the host.
-  ports.each do |port|
-    config.vm.network :forwarded_port, guest: port[:guest], host: port[:host]
-  end
 
   # We want to cater for both Unix and Windows.
   if RUBY_PLATFORM =~ /linux|darwin/
@@ -57,9 +48,15 @@ Vagrant.configure("2") do |config|
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm",     :id, "--cpus", cpus]
     vb.customize ["modifyvm",     :id, "--memory", ram]
+    vb.customize ["modifyvm",     :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm",     :id, "--natdnsproxy1", "on"]
+    vb.customize ["modifyvm",     :id, "--nicpromisc1", "allow-all"]
+    vb.customize ["modifyvm",     :id, "--nicpromisc2", "allow-all"]
+    vb.customize ["modifyvm",     :id, "--nictype1", "Am79C973"]
+    vb.customize ["modifyvm",     :id, "--nictype2", "Am79C973"]
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   end
 
+  # Provisioners.
   config.vm.provision :shell, :path => "puppet/provision.sh"
-
 end

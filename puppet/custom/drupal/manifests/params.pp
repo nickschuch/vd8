@@ -1,7 +1,7 @@
 # Drupal 8 common parameters.
 
 class drupal::params (
-  $port                = '8080',
+  $port                = '80',
   $display_errors      = 'false',
   $memory_limit        = '256M',
   $post_max_size       = '20M',
