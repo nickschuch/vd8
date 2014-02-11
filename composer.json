@@ -1,0 +1,25 @@
+{
+  "repositories": [
+    {
+        "type":"package",
+        "package": {
+          "name": "nickschuch/drupal-install",
+          "version":"master",
+          "source": {
+              "url": "git@github.com:nickschuch/phing-drupal-install.git",
+              "type": "git",
+              "reference":"0.0.1"
+            }
+        }
+    }
+  ],
+  "require": {
+  	"guzzle/http": "3.7.*",
+    "guzzle/plugin-cookie": "3.7.*",
+    "zendframework/zend-feed": "2.2.*",
+    "behat/mink": "1.4@stable",
+    "behat/mink-goutte-driver": "*",
+    "nickschuch/drupal-install": "master"
+  },
+  "minimum-stability": "dev"
+}
