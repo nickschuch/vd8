@@ -14,7 +14,7 @@
   <!--  Properties   -->
   <!-- ============= -->
 
-  <property name="app.uri" value="http://localhost:8080" />
+  <property name="app.uri" value="http://d8.dev" />
   <property name="app.installUrl" value="core/install.php" />
   
   <!-- User details. -->
@@ -23,7 +23,7 @@
   <property name="app.password" value="password" />
   
   <!-- Database options -->
-  <property name="app.host" value="127.0.0.1" />
+  <property name="app.host" value="d8.dev" />
   <property name="app.database" value="d8" />
   <property name="app.databaseUser" value="d8" />
   <property name="app.databasePass" value="d8" />
