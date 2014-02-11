@@ -60,8 +60,9 @@
     <exec command="sudo scp ${app.default_site}/default.settings.php ${app.default_site}/settings.php" />
     <exec command="sudo chmod 777 ${app.default_site}/settings.php" />
 
-    <!-- Install the site using Mink -->
+    <!-- Install the site and simpletest module using Mink -->
     <phingcall target="install" />
+    <phingcall target="enable:simpletest" />
   </target>
 
 </project>

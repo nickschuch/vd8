@@ -7,7 +7,7 @@ PUPPET_DIR='/tmp/puppet'
 apt-get update > /dev/null
 apt-get install git -y > /dev/null
 gem install puppet > /dev/null
-gem install librarian-puppet > /dev/null
+gem install librarian-puppet-maestrodev -v 0.9.10.1 --no-ri --no-rdoc > /dev/null
 
 # Copy the manifest.
 rm -fR $PUPPET_DIR
