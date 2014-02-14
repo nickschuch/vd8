@@ -23,14 +23,17 @@
   <property name="app.password" value="password" />
   
   <!-- Database options -->
-  <property name="app.host" value="d8.dev" />
+  <property name="app.databaseHost" value="d8.dev" />
+  <property name="app.databasePort" value="3306" />
   <property name="app.database" value="d8" />
   <property name="app.databaseUser" value="d8" />
   <property name="app.databasePass" value="d8" />
-  <property name="app.mysql_connect" value="mysql -u${app.databaseUser} -p${app.databasePass} -h${app.host}" />
 
   <!-- Provide overrides. -->
   <property file="build.properties" override="true" />
+
+  <!-- Build MySQL connection string using properties -->
+  <property name="app.mysql_connect" value="mysql -u${app.databaseUser} -p${app.databasePass} -h${app.databaseHost} -P${app.databasePort}" />
 
   <!--               -->
   <!-- Basic targets -->
