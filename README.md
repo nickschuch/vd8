@@ -64,11 +64,10 @@ Checkout the latest HEAD of Drupal 8:
 git clone --branch 8.x http://git.drupal.org/project/drupal.git app
 ```
 
-Copy the default settings.php file for installation:
+To install
 
 ```
-sudo scp app/sites/default/default.settings.php app/sites/default/settings.php
-sudo chmod 664 app/sites/default/settings.php
+phing reinstall
 ```
 
 Now (in your browser) go to the below URL and install Drupal 8:
