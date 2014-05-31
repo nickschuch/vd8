@@ -1,21 +1,35 @@
-# Install the puppet related mdoules via shell.
+#!/bin/bash
 
-# Variables for the script.
-PUPPET_DIR='/tmp/puppet'
+# Script: provision.sh
+# Author: Nick Schuch
 
-# Install the related tools.
-apt-get update > /dev/null
-apt-get install git -y > /dev/null
-gem install puppet > /dev/null
-gem install librarian-puppet-maestrodev -v 0.9.10.1 --no-ri --no-rdoc > /dev/null
+DIR='/vagrant/puppet'
 
-# Copy the manifest.
-rm -fR $PUPPET_DIR
-rsync -avz --quiet /vagrant/puppet/* $PUPPET_DIR
-cd $PUPPET_DIR && librarian-puppet install
+# Helper function to install packages.
+aptInstall() {
+  COUNT=`dpkg --get-selections $1 | grep -v deinstall | wc -l`
+  if [ "$COUNT" -eq "0" ]; then
+    apt-get -y update > /dev/null
+    apt-get -y install $1
+  fi
+}
 
-# Install the manifest.
-cd $PUPPET_DIR && puppet apply --modulepath=$PUPPET_DIR/modules $PUPPET_DIR/site.pp
+# Helper function to install gems packages.
+gemInstall() {
+  COUNT=`gem list | grep $1 | wc -l`
+  if [ "$COUNT" -eq "0" ]; then
+    gem install $1
+  fi
+}
 
-# Cleanup.
-rm -fR $PUPPET_DIR
+# Install the required packages.
+aptInstall curl
+aptInstall wget
+aptInstall git
+aptInstall rubygems
+aptInstall vim
+gemInstall bundler
+
+# Puppet run.
+cd ${DIR} && bundle --path vendor/bundle
+cd ${DIR} && bundle exec librarian-puppet install

@@ -16,7 +16,10 @@ ram      = '1024'
 # assigning roles.
 # eg. "drupal" => "true" could setup a Drupal site.
 facts = {
-  "fqdn" => hostname + '.' + domain,
+  'fqdn'          => hostname + '.' + domain,
+  # We set these so we can marry up permissions.
+  'vagrant_uid'   => Process.uid,
+  'vagrant_group' => 'dialout'
 }
 
 ##
@@ -28,8 +31,12 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = hostname + '.' + domain
   config.vm.box_url  = url
 
-  # Network configured as per bit.ly/1e0ZU1r
-  config.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
+  if Vagrant.has_plugin?('vagrant-auto_network')
+    # Network configured as per bit.ly/1e0ZU1r
+    config.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
+  else
+    config.vm.network :private_network, :ip => "192.168.50.10"
+  end
 
   # We want to cater for both Unix and Windows.
   if RUBY_PLATFORM =~ /linux|darwin/
@@ -59,4 +66,10 @@ Vagrant.configure("2") do |config|
 
   # Provisioners.
   config.vm.provision :shell, :path => "puppet/provision.sh"
+  config.vm.provision :puppet do |puppet|
+    puppet.facter = facts
+    puppet.manifests_path = "puppet"
+    puppet.manifest_file = "site.pp"
+    puppet.module_path = "puppet/modules"
+  end
 end

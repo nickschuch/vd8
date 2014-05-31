@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/puppetlabs/puppetlabs-apache.git
-  ref: 0.9.0
-  sha: 83401079053dca11d61945bd9beef9ecf7576cbf
+  ref: 1.0.1
+  sha: 5a45cf170c3b9abb44cf4a9adade2752e2159b7f
   specs:
-    puppetlabs/apache (0.9.0)
+    puppetlabs/apache (1.0.1)
       puppetlabs/concat (>= 1.0.0)
       puppetlabs/stdlib (>= 2.4.0)
 

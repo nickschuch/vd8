@@ -1,71 +1,107 @@
 <!--
   name: build.xml
-  description: The main project build file for phing operations. This file can 
+  description: The main project build file for phing operations. This file can
                be overridden with project specific configuration.
 -->
 
 <project name="vd8" default="prepare" phingVersion="2.4.11">
 
-  <!-- We set this to optional as is managed by composer -->
-  <includepath classpath="vendor/nickschuch/drupal-install" />
-  <import file="vendor/nickschuch/drupal-install/build.xml" optional="true" />
-
   <!--               -->
   <!--  Properties   -->
   <!-- ============= -->
 
-  <property name="app.uri" value="http://d8.dev" />
-  <property name="app.installUrl" value="core/install.php" />
-  
-  <!-- User details. -->
-  <property name="app.email" value="user@example.com" />
-  <property name="app.username" value="admin" />
-  <property name="app.password" value="password" />
-  
-  <!-- Database options -->
-  <property name="app.databaseHost" value="d8.dev" />
-  <property name="app.databasePort" value="3306" />
-  <property name="app.database" value="d8" />
-  <property name="app.databaseUser" value="d8" />
-  <property name="app.databasePass" value="d8" />
+  <!-- Drupal -->
+  <property name="drupal.siteName" value="Drupal8" />
+  <property name="drupal.email" value="user@example.com" />
+  <property name="drupal.user" value="admin" />
+  <property name="drupal.pass" value="password" />
+  <property name="drupal.dir" value="${project.basedir}/app" />
+
+  <!-- Mysql -->
+  <property name="mysql.host" value="d8.dev" />
+  <property name="mysql.port" value="3306" />
+  <property name="mysql.database" value="d8" />
+  <property name="mysql.user" value="d8" />
+  <property name="mysql.pass" value="d8" />
+  <property name="mysql.queryString" value="mysql://${mysql.user}:${mysql.pass}@${mysql.host}/${mysql.database}" />
+
+  <!-- Drush -->
+  <property name="drush.cmd" value="bin/drush -r ${drupal.dir}" />
+
+  <!-- Vagrant -->
+  <property name="vagrant.dir" value="/vagrant" />
+
+  <!-- Globals for exec commands. The main goal of these were for fast failingin the bot. -->
+  <property name="test.output" value="true" />
+  <property name="test.passthru" value="true" />
 
   <!-- Provide overrides. -->
   <property file="build.properties" override="true" />
 
-  <!-- Build MySQL connection string using properties -->
-  <property name="app.mysql_connect" value="mysql -u${app.databaseUser} -p${app.databasePass} -h${app.databaseHost} -P${app.databasePort}" />
+  <!--         -->
+  <!-- Targets -->
+  <!-- ======= -->
 
-  <!--               -->
-  <!-- Basic targets -->
-  <!-- ============= -->
-
+  <!-- Prepare the project -->
   <target name="prepare"
           description="Prepare for build">
-    <exec command="composer install" />
+    <exec command="composer install --prefer-dist"
+          logoutput="${test.output}"
+          passthru="${test.passthru}" />
   </target>
 
-  <!--                -->
-  <!-- Custom targets -->
-  <!-- ============== -->
+  <!-- Runs a command in the Vagrant host -->
+  <target name="vagrant:run"
+          if="drush.cmd"
+          description="Run a command in the vagrant host.">
+    <exec command="vagrant ssh -c '${vagrant.cmd}'"
+          logoutput="${test.output}"
+          passthru="${test.passthru}" />
+  </target>
 
+  <!-- Reinstall the Drupal 8 site. -->
   <target name="reinstall"
+          depends="prepare"
           description="Reinstall the Drupal 8 site.">
-    <property name="app.default_site" value="${project.basedir}/app/sites/default" />
-
     <!-- Drop and create the database -->
-    <exec command="${app.mysql_connect} -e 'DROP DATABASE ${app.database}'" />
-    <exec command="${app.mysql_connect} -e 'CREATE DATABASE ${app.database}'" />
+    <exec command="${drush.cmd} sql-drop -y"
+          logoutput="${test.output}"
+          passthru="${test.passthru}"/>
 
     <!-- Ensure the files directory is clean -->
-    <exec command="sudo rm -fR ${app.default_site}/files/*" />
+    <exec command="sudo rm -fR ${drupal.dir}/sites/default/files/*"
+          logoutput="${test.output}"
+          passthru="${test.passthru}" />
 
     <!-- Ensure we have a fresh settings.php with correct permissions -->
-    <exec command="sudo scp ${app.default_site}/default.settings.php ${app.default_site}/settings.php" />
-    <exec command="sudo chmod 777 ${app.default_site}/settings.php" />
+    <exec command="sudo scp ${drupal.dir}/sites/default/default.settings.php ${drupal.dir}/sites/default/settings.php"
+          logoutput="${test.output}"
+          passthru="${test.passthru}" />
+    <exec command="sudo chmod 777 ${drupal.dir}/sites/default/settings.php"
+          logoutput="${test.output}"
+          passthru="${test.passthru}" />
 
-    <!-- Install the site and simpletest module using Mink -->
+    <!-- Install the site and simpletest -->
     <phingcall target="install" />
-    <phingcall target="enable:simpletest" />
+    <phingcall target="simpletest:enable" />
+  </target>
+
+  <!-- Install the Drupal 8 site. -->
+  <target name="install"
+          description="Install the Drupal 8 site.">
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; bin/drush -r ${vagrant.dir}/app site-install -y --db-url=${mysql.queryString} --account-mail=${drupal.email} --account-name=${drupal.user} --account-pass=${drupal.pass} --site-name=${drupal.siteName}" />
+    </phingcall>
+  </target>
+
+  <!-- Enable Simpletest module -->
+  <target name="simpletest:enable"
+          description="Enable the Testing module.">
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; bin/drush -r ${vagrant.dir}/app en -y simpletest" />
+    </phingcall>
   </target>
 
 </project>
