@@ -40,4 +40,13 @@ class drupal::webserver (
     require => Class['apache'],
     notify  => Service['httpd'],
   }
+
+  # Xdebug.
+  file { '/etc/php5/conf.d/20-xdebug.ini':
+    ensure  => present,
+    mode    => '0644',
+    content => template('drupal/20-xdebug.ini.erb'),
+    require => Package['php5-xdebug'],
+    notify  => Service['httpd'],
+  }
 }
