@@ -4,7 +4,7 @@ class drupal::webserver (
   $port = $drupal::params::port,
 ) {
   # We setup a user for Apache.
-  $user_name = "pnx"
+  $user_name = "drupal"
   user { $user_name:
     ensure => present,
     home => "/home/${user_name}",
