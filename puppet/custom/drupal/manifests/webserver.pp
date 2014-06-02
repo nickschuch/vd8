@@ -25,7 +25,7 @@ class drupal::webserver (
     mpm_module => 'prefork',
     manage_user => false,
     manage_group => false,
-    user => 'pnx',
+    user => $user_name,
     group => $vagrant_group,
   }
   apache::listen { $port: }
