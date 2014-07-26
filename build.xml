@@ -16,6 +16,7 @@
   <property name="drupal.user" value="admin" />
   <property name="drupal.pass" value="password" />
   <property name="drupal.dir" value="${project.basedir}/app" />
+  <property name="drupal.profile" value="standard" />
 
   <!-- Mysql -->
   <property name="mysql.host" value="d8.dev" />
@@ -91,7 +92,7 @@
           description="Install the Drupal 8 site.">
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; bin/drush -r ${vagrant.dir}/app site-install -y --db-url=${mysql.queryString} --account-mail=${drupal.email} --account-name=${drupal.user} --account-pass=${drupal.pass} --site-name=${drupal.siteName}" />
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; bin/drush -r ${vagrant.dir}/app site-install ${drupal.profile} -y --db-url=${mysql.queryString} --account-mail=${drupal.email} --account-name=${drupal.user} --account-pass=${drupal.pass} --site-name=${drupal.siteName}" />
     </phingcall>
   </target>
 
