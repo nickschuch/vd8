@@ -101,7 +101,31 @@
           description="Enable the Testing module.">
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; bin/drush -r ${vagrant.dir}/app en -y simpletest" />
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app en -y simpletest" />
+    </phingcall>
+  </target>
+
+  <!-- Test a class -->
+  <target name="simpletest:class"
+          description="Test a test class using simpletest.">
+    <input propertyName="test.class"
+           defaultValue="Drupal\action\Tests\ConfigurationTest"
+           message="Enter class name with namespace." />
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value='cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --class "${test.class}"' />
+    </phingcall>
+  </target>
+
+  <!-- Test a class -->
+  <target name="simpletest:group"
+          description="Test a test group using simpletest.">
+    <input propertyName="test.group"
+           defaultValue="action"
+           message="Enter group name." />
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color '${test.group}'" />
     </phingcall>
   </target>
 
