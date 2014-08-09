@@ -1,6 +1,8 @@
 {
   "require": {
-    "drush/drush": "dev-master"
+    "drush/drush": "dev-master",
+    "squizlabs/php_codesniffer": "2.0.*@dev",
+    "drupal/coder": "dev-8.x-2.x"
   },
   "minimum-stability": "dev",
   "config": {

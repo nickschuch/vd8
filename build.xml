@@ -129,4 +129,16 @@
     </phingcall>
   </target>
 
+  <!-- PHP CS -->
+  <target name="phpcs:dir"
+          description="Check the coding standard of give directory.">
+    <input propertyName="phpcs:path"
+           defaultValue="core"
+           message="Enter the path of directory." />
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}/app; ../bin/phpcs --report=full --standard='../vendor/drupal/coder/coder_sniffer/Drupal' ${phpcs:path}" />
+    </phingcall>
+  </target>
+
 </project>
