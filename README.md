@@ -5,6 +5,26 @@ Vagrant Drupal 8 (vd8)
 
 The VD8 project has been created to make sure developers have an easy method for boostrapping a local Drupal 8 development environment.
 
+## Installation instructions
+
+This repository will form the root of your development environment with the Drupal installation inside the /app directory. To install:
+
+* Clone this repository
+* Checkout the latest HEAD of Drupal 8:
+
+```
+ git clone --branch 8.x http://git.drupal.org/project/drupal.git app
+```
+
+* Run phing installer
+
+```
+ phing reinstall
+```
+
+The above command can be run as many times as you like. It provides a good
+workflow for developing and testing.
+
 ## Roadmap
 
 * Phing targets.
@@ -58,20 +78,3 @@ http://docs.vagrantup.com/v2
 ## Local DNS
 
 WE REQUIRE THE "Vagrant Auto-network" PLUGIN AS MENTIONED ABOVE.
-
-## Drupal
-
-Checkout the latest HEAD of Drupal 8:
-
-```
-git clone --branch 8.x http://git.drupal.org/project/drupal.git app
-```
-
-To install
-
-```
-phing reinstall
-```
-
-The above command can be run as many times as you like. It provides a good
-workflow for developing and testing.
