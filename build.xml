@@ -20,7 +20,6 @@
 
   <!-- Modules -->
   <property name="modules.enable" value="false" />
-  <property name="modules.list" value="link telephone" />
 
   <!-- Mysql -->
   <property name="mysql.host" value="d8.dev" />
@@ -109,6 +108,13 @@
   <!-- Enable given modules -->
   <target name="enable:modules"
           description="Enable the contrib modules.">
+    <if>
+      <not><isset property="modules.list" /></not>
+      <then>
+        <input message="Enter module name seprated by space." propertyName="modules.list"
+               defaultValue="views views_ui" />
+      </then>
+    </if>
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
       <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app en -y ${modules.list}" />
