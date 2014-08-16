@@ -18,6 +18,9 @@
   <property name="drupal.dir" value="${project.basedir}/app" />
   <property name="drupal.profile" value="standard" />
 
+  <!-- Modules -->
+  <property name="modules.enable" value="false" />
+
   <!-- Mysql -->
   <property name="mysql.host" value="d8.dev" />
   <property name="mysql.port" value="3306" />
@@ -82,8 +85,14 @@
           logoutput="${test.output}"
           passthru="${test.passthru}" />
 
-    <!-- Install the site and simpletest -->
+    <!-- Install the site, contrib modules and simpletest -->
     <phingcall target="install" />
+    <if>
+      <equals arg1="${modules.enable}" arg2="true" />
+      <then>
+        <phingcall target="enable:modules" />
+      </then>
+    </if>
     <phingcall target="simpletest:enable" />
   </target>
 
@@ -93,6 +102,22 @@
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
       <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app site-install ${drupal.profile} -y --db-url=${mysql.queryString} --account-mail=${drupal.email} --account-name=${drupal.user} --account-pass=${drupal.pass} --site-name=${drupal.siteName}" />
+    </phingcall>
+  </target>
+
+  <!-- Enable given modules -->
+  <target name="enable:modules"
+          description="Enable the contrib modules.">
+    <if>
+      <not><isset property="modules.list" /></not>
+      <then>
+        <input message="Enter module name seprated by space." propertyName="modules.list"
+               defaultValue="views views_ui" />
+      </then>
+    </if>
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app en -y ${modules.list}" />
     </phingcall>
   </target>
 
@@ -132,12 +157,12 @@
   <!-- PHP CS -->
   <target name="phpcs:dir"
           description="Check the coding standard of give directory.">
-    <input propertyName="phpcs:path"
+    <input propertyName="phpcs.path"
            defaultValue="core"
            message="Enter the path of directory." />
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}/app; ../bin/phpcs --report=full --standard='../vendor/drupal/coder/coder_sniffer/Drupal' ${phpcs:path}" />
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}/app; ../bin/phpcs --report=full --standard='../vendor/drupal/coder/coder_sniffer/Drupal' ${phpcs.path}" />
     </phingcall>
   </target>
 
