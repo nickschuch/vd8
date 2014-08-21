@@ -138,7 +138,7 @@
            message="Enter class name with namespace." />
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value='cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --sqlite /tmp/test.sqlite --class "${test.class}"' />
+      <property name="vagrant.cmd" value='cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --sqlite /dev/shm/test.sqlite --class "${test.class}"' />
     </phingcall>
   </target>
 
@@ -150,7 +150,7 @@
            message="Enter group name." />
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --sqlite /tmp/test.sqlite '${test.group}'" />
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --sqlite /dev/shm/test.sqlite '${test.group}'" />
     </phingcall>
   </target>
 
