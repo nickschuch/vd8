@@ -29,6 +29,7 @@ aptInstall git
 aptInstall rubygems
 aptInstall vim
 gemInstall bundler
+aptInstall sqlite
 
 # Puppet run.
 cd ${DIR} && bundle --path vendor/bundle
