@@ -85,6 +85,14 @@
           logoutput="${test.output}"
           passthru="${test.passthru}" />
 
+    <!-- Ensure we have a fresh services.yml with correct permissions -->
+    <exec command="sudo scp ${drupal.dir}/sites/default/default.services.yml ${drupal.dir}/sites/default/services.yml"
+          logoutput="${test.output}"
+          passthru="${test.passthru}" />
+    <exec command="sudo chmod 777 ${drupal.dir}/sites/default/services.yml"
+          logoutput="${test.output}"
+          passthru="${test.passthru}" />
+
     <!-- Install the site, contrib modules and simpletest -->
     <phingcall target="install" />
     <if>
