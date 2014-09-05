@@ -7,10 +7,11 @@
 
 box      = 'precise32'
 url      = 'http://files.vagrantup.com/' + box + '.box'
-hostname = 'd8'
-domain   = 'dev'
-cpus     = '1'
-ram      = '1024'
+hostname = ENV['VD8_HOSTNAME'] || 'd8'
+domain   = ENV['VD8_DOMAIN'] || 'dev'
+cpus     = ENV['VD8_CPUS'] || '1'
+ram      = ENV['VD8_RAM'] || '1024'
+ip_fall  = ENV['VD8_FALLBACK_IP'] || '192.168.50.10'
 
 # These allow for puppet facts to be set. We use these for
 # assigning roles.
@@ -18,8 +19,8 @@ ram      = '1024'
 facts = {
   'fqdn'          => hostname + '.' + domain,
   # We set these so we can marry up permissions.
-  'vagrant_uid'   => Process.uid,
-  'vagrant_group' => 'dialout'
+  'vagrant_uid'   => ENV['VD8_UID'] || Process.uid,
+  'vagrant_group' => ENV['VD8_GROUP'] || 'dialout',
 }
 
 ##
@@ -35,7 +36,7 @@ Vagrant.configure("2") do |config|
     # Network configured as per bit.ly/1e0ZU1r
     config.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
   else
-    config.vm.network :private_network, :ip => "192.168.50.10"
+    config.vm.network :private_network, :ip => ip_fall
   end
 
   # We want to cater for both Unix and Windows.
@@ -53,15 +54,15 @@ Vagrant.configure("2") do |config|
 
   # Virtualbox provider configuration.
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm",     :id, "--cpus", cpus]
-    vb.customize ["modifyvm",     :id, "--memory", ram]
-    vb.customize ["modifyvm",     :id, "--natdnshostresolver1", "on"]
-    vb.customize ["modifyvm",     :id, "--natdnsproxy1", "on"]
-    vb.customize ["modifyvm",     :id, "--nicpromisc1", "allow-all"]
-    vb.customize ["modifyvm",     :id, "--nicpromisc2", "allow-all"]
-    vb.customize ["modifyvm",     :id, "--nictype1", "Am79C973"]
-    vb.customize ["modifyvm",     :id, "--nictype2", "Am79C973"]
-    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+    vb.customize ["modifyvm",     :id, "--cpus",                cpus ]
+    vb.customize ["modifyvm",     :id, "--memory",              ram ]
+    vb.customize ["modifyvm",     :id, "--natdnshostresolver1", "on" ]
+    vb.customize ["modifyvm",     :id, "--natdnsproxy1",        "on" ]
+    vb.customize ["modifyvm",     :id, "--nicpromisc1",         "allow-all" ]
+    vb.customize ["modifyvm",     :id, "--nicpromisc2",         "allow-all" ]
+    vb.customize ["modifyvm",     :id, "--nictype1",            "Am79C973" ]
+    vb.customize ["modifyvm",     :id, "--nictype2",            "Am79C973" ]
+    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1" ]
   end
 
   # Provisioners.
@@ -69,7 +70,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :puppet do |puppet|
     puppet.facter = facts
     puppet.manifests_path = "puppet"
-    puppet.manifest_file = "site.pp"
-    puppet.module_path = "puppet/modules"
+    puppet.manifest_file  = "site.pp"
+    puppet.module_path    = "puppet/modules"
   end
 end
