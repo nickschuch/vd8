@@ -24,16 +24,18 @@ Vagrant can be downloaded and installed from:
 
 http://www.vagrantup.com/downloads.html
 
-This also required the autonetwork plugin which can be installed by:
+This also required the autonetwork and hostsupdater plugins which can be installed by:
 
 ```
-vagrant plugin install vagrant-auto_network
+$ vagrant plugin install vagrant-hostsupdater
+$ vagrant plugin install vagrant-auto_network
 ```
 
 #### Plugins
 
 These are software versions we know work:
 
+* Vagrant Hostupdater: 0.0.11
 * Vagrant Auto-network: 0.2.1
 
 #### Usage
@@ -41,14 +43,14 @@ These are software versions we know work:
 The machine can can be booted by the following command:
 
 ```
-vagrant up
+$ vagrant up
 ```
 
 The host will be provisioned automatically on the first `vagrant up`. If you
 wish to rerun the provision that can be done with the following command:
 
 ```
-vagrant provision
+$ vagrant provision
 ```
 
 More vagrant commands and documenation can be found here:
@@ -64,13 +66,13 @@ WE REQUIRE THE "Vagrant Auto-network" PLUGIN AS MENTIONED ABOVE.
 Checkout the latest HEAD of Drupal 8:
 
 ```
-git clone --branch 8.x http://git.drupal.org/project/drupal.git app
+$ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git app
 ```
 
 To install
 
 ```
-phing reinstall
+$ phing reinstall
 ```
 
 The above command can be run as many times as you like. It provides a good
