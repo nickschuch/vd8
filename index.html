@@ -39,37 +39,86 @@
         <ul></ul>
       </nav>
       <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h2>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>The VD8 project has been created to make sure developers have an easy method for boostrapping a local Drupal 8 development environment.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h2>
+<a name="roadmap" class="anchor" href="#roadmap"><span class="octicon octicon-link"></span></a>Roadmap</h2>
+
+<ul>
+<li>Phing targets.</li>
+<li>Custom packer image to shorten provision time.</li>
+</ul><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<h3>
+<a name="virtualbox-436" class="anchor" href="#virtualbox-436"><span class="octicon octicon-link"></span></a>Virtualbox (4.3.6)</h3>
+
+<p>Virtualbox can be downloaded and installed from:</p>
+
+<p><a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a></p>
+
+<h3>
+<a name="vagrant-13-to-15" class="anchor" href="#vagrant-13-to-15"><span class="octicon octicon-link"></span></a>Vagrant (1.3 to 1.5)</h3>
+
+<p>Vagrant can be downloaded and installed from:</p>
+
+<p><a href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a></p>
+
+<p>This also required the autonetwork and hostsupdater plugins which can be installed by:</p>
+
+<pre><code>$ vagrant plugin install vagrant-hostsupdater
+$ vagrant plugin install vagrant-auto_network
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h4>
+<a name="plugins" class="anchor" href="#plugins"><span class="octicon octicon-link"></span></a>Plugins</h4>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>These are software versions we know work:</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<ul>
+<li>Vagrant Hostupdater: 0.0.11</li>
+<li>Vagrant Auto-network: 0.2.1</li>
+</ul><h4>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h4>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>The machine can can be booted by the following command:</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<pre><code>$ vagrant up
+</code></pre>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>The host will be provisioned automatically on the first <code>vagrant up</code>. If you
+wish to rerun the provision that can be done with the following command:</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<pre><code>$ vagrant provision
+</code></pre>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>More vagrant commands and documenation can be found here:</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p><a href="http://docs.vagrantup.com/v2">http://docs.vagrantup.com/v2</a></p>
+
+<h2>
+<a name="local-dns" class="anchor" href="#local-dns"><span class="octicon octicon-link"></span></a>Local DNS</h2>
+
+<p>WE REQUIRE THE "Vagrant Auto-network" PLUGIN AS MENTIONED ABOVE.</p>
+
+<h2>
+<a name="drupal" class="anchor" href="#drupal"><span class="octicon octicon-link"></span></a>Drupal</h2>
+
+<p>Checkout the latest HEAD of Drupal 8:</p>
+
+<pre><code>$ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git app
+</code></pre>
+
+<p>To install</p>
+
+<pre><code>$ phing reinstall
+</code></pre>
+
+<p>The above command can be run as many times as you like. It provides a good
+workflow for developing and testing.</p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/nickschuch">nickschuch</a></p>
