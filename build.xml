@@ -68,9 +68,7 @@
           depends="prepare"
           description="Reinstall the Drupal 8 site.">
     <!-- Drop and create the database -->
-    <exec command="${drush.cmd} sql-drop -y"
-          logoutput="${test.output}"
-          passthru="${test.passthru}"/>
+    <phingcall target="db:drop" />
 
     <!-- Ensure the files directory is clean -->
     <exec command="sudo rm -fR ${drupal.dir}/sites/default/files/*"
@@ -110,6 +108,15 @@
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
       <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app site-install ${drupal.profile} -y --db-url=${mysql.queryString} --account-mail=${drupal.email} --account-name=${drupal.user} --account-pass=${drupal.pass} --site-name=${drupal.siteName}" />
+    </phingcall>
+  </target>
+  
+  <!-- Install the Drupal 8 site. -->
+  <target name="db:drop"
+          description="Drop the database.">
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app sql-drop -y" />
     </phingcall>
   </target>
 
