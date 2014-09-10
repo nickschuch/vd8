@@ -111,7 +111,7 @@
     </phingcall>
   </target>
   
-  <!-- Install the Drupal 8 site. -->
+  <!-- Drop the database of the Drupal 8 site. -->
   <target name="db:drop"
           description="Drop the database.">
     <phingcall target="vagrant:run">
