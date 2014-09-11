@@ -53,7 +53,10 @@ wish to rerun the provision that can be done with the following command:
 $ vagrant provision
 ```
 
-More vagrant commands and documenation can be found here:
+If you need to SSH to the vagrant box (you can do most things from the host
+machine though) - use `vagrant ssh`.
+
+More vagrant commands and documentation can be found here:
 
 http://docs.vagrantup.com/v2
 
@@ -63,13 +66,15 @@ WE REQUIRE THE "Vagrant Auto-network" PLUGIN AS MENTIONED ABOVE.
 
 ## Drupal
 
+On your local machine from the vd8 directory:
+
 Checkout the latest HEAD of Drupal 8:
 
 ```
 $ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git app
 ```
 
-To install
+Run phing to install. Make sure you have phing installed on your machine.
 
 ```
 $ phing reinstall
@@ -77,3 +82,5 @@ $ phing reinstall
 
 The above command can be run as many times as you like. It provides a good
 workflow for developing and testing.
+
+The D8 site will be available at http://d8.dev
