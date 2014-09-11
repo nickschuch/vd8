@@ -54,9 +54,9 @@ $ vagrant provision
 ```
 
 If you need to SSH to the vagrant box (you can do most things from the host
-machine though) - use `ssh vagrant@127.0.0.1 -p2222`.
+machine though) - use `vagrant ssh`.
 
-More vagrant commands and documenation can be found here:
+More vagrant commands and documentation can be found here:
 
 http://docs.vagrantup.com/v2
 
