@@ -63,6 +63,18 @@
           passthru="${test.passthru}" />
   </target>
 
+  <!-- Runs a drush command in the Vagrant host -->
+  <target name="drush:run"
+          description="Run a drush command in the vagrant host.">
+    <input propertyName="drush.command"
+           defaultValue="status"
+           message="Enter the path of directory." />
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app ${drush.command}"  />
+    </phingcall>
+  </target>
+
   <!-- Reinstall the Drupal 8 site. -->
   <target name="reinstall"
           depends="prepare"
