@@ -68,7 +68,7 @@
           description="Run a drush command in the vagrant host.">
     <input propertyName="drush.command"
            defaultValue="status"
-           message="Enter the path of directory." />
+           message="Enter the name of the drush command eg. status" />
     <phingcall target="vagrant:run">
       <!-- After some properties for inside the Vagrant host. -->
       <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app ${drush.command}"  />
