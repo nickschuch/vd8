@@ -181,6 +181,15 @@
     </phingcall>
   </target>
 
+  <!-- Clean temporary tables and files created by Simpletest module. -->
+  <target name="simpletest:clean"
+          description="Enable the Testing module.">
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app test-clean" />
+    </phingcall>
+  </target>
+
   <!-- PHP CS -->
   <target name="phpcs:dir"
           description="Check the coding standard of give directory.">
