@@ -46,7 +46,7 @@
             "source": {
                 "type": "git",
                 "url": "http://git.drupal.org/project/coder.git",
-                "reference": "c2fdaad47ee194efe0aaa7e591d691da194c1a5a"
+                "reference": "84906508bcc01419c58d60824d902f04b25d2e26"
             },
             "require": {
                 "php": ">=5.2.0",
@@ -67,7 +67,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-07-18 13:14:26"
+            "time": "2014-10-31 00:22:17"
         },
         {
             "name": "drush/drush",
@@ -75,19 +75,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "c97300820194ea7898bee29a176e93d9542c9bac"
+                "reference": "ae404049b4f573024a4a7e6f5f005ca79ee63a4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/c97300820194ea7898bee29a176e93d9542c9bac",
-                "reference": "c97300820194ea7898bee29a176e93d9542c9bac",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/ae404049b4f573024a4a7e6f5f005ca79ee63a4c",
+                "reference": "ae404049b4f573024a4a7e6f5f005ca79ee63a4c",
                 "shasum": ""
             },
             "require": {
                 "d11wtq/boris": "*",
-                "pear/console_table": "1.1.5",
+                "pear/console_table": "~1.2.0",
                 "php": ">=5.3.0",
-                "symfony/yaml": "2.2.1"
+                "symfony/yaml": "~2.2"
             },
             "require-dev": {
                 "phpunit/phpunit": ">=3.5",
@@ -141,27 +141,27 @@
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2014-08-04 23:54:16"
+            "time": "2014-11-06 04:56:27"
         },
         {
             "name": "pear/console_table",
-            "version": "1.1.5",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobLoach/Console_Table.git",
-                "reference": "9f80c91a9fc01a3cce71ae80ea5bd473cb0eba4c"
+                "reference": "10d89fbbe533351dcfe5dc1e84de25d9a8395950"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/Console_Table/zipball/9f80c91a9fc01a3cce71ae80ea5bd473cb0eba4c",
-                "reference": "9f80c91a9fc01a3cce71ae80ea5bd473cb0eba4c",
+                "url": "https://api.github.com/repos/RobLoach/Console_Table/zipball/10d89fbbe533351dcfe5dc1e84de25d9a8395950",
+                "reference": "10d89fbbe533351dcfe5dc1e84de25d9a8395950",
                 "shasum": ""
             },
             "require": {
-                "php": ">=4.0.0"
+                "php": ">=4.3.10"
             },
             "suggest": {
-                "pear/Console_Color": ">=0.0.4"
+                "pear/Console_Color2": ">=0.1.2"
             },
             "type": "library",
             "autoload": {
@@ -171,7 +171,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD"
+                "BSD-2-Clause"
             ],
             "authors": [
                 {
@@ -191,12 +191,12 @@
                     "homepage": "http://pear.php.net/user/richard"
                 }
             ],
-            "description": "Class that makes it easy to build console style tables.",
-            "homepage": "https://github.com/pear/Console_Table",
+            "description": "Library that makes it easy to build console style tables.",
+            "homepage": "http://pear.php.net/package/Console_Table/",
             "keywords": [
                 "console"
             ],
-            "time": "2012-12-07 14:43:01"
+            "time": "2014-10-27 10:04:49"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -204,12 +204,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "f3fef2dd0052bf5028f10a7389ee5abbd26b3009"
+                "reference": "198692e8e15cb4bde41f31742209f4bf61486af3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/f3fef2dd0052bf5028f10a7389ee5abbd26b3009",
-                "reference": "f3fef2dd0052bf5028f10a7389ee5abbd26b3009",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/198692e8e15cb4bde41f31742209f4bf61486af3",
+                "reference": "198692e8e15cb4bde41f31742209f4bf61486af3",
                 "shasum": ""
             },
             "require": {
@@ -269,21 +269,21 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-08-06 04:29:41"
+            "time": "2014-11-04 00:15:26"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.2.1",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "3f6d4ab3fd8226ab4ba0be9fc8a238f4338b79ab"
+                "reference": "9da3813f36985a4089f7e83c601a1034d125ff69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/3f6d4ab3fd8226ab4ba0be9fc8a238f4338b79ab",
-                "reference": "3f6d4ab3fd8226ab4ba0be9fc8a238f4338b79ab",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/9da3813f36985a4089f7e83c601a1034d125ff69",
+                "reference": "9da3813f36985a4089f7e83c601a1034d125ff69",
                 "shasum": ""
             },
             "require": {
@@ -292,7 +292,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -306,37 +306,27 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-23 07:49:54"
+            "time": "2014-11-03 03:55:50"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "drush/drush": 20,
         "squizlabs/php_codesniffer": 20,
         "drupal/coder": 20
     },
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "platform": [],
+    "platform-dev": []
 }

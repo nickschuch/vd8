@@ -17,6 +17,7 @@
   <property name="drupal.pass" value="password" />
   <property name="drupal.dir" value="${project.basedir}/app" />
   <property name="drupal.profile" value="standard" />
+  <property name="drupal.url" value="http://d8.dev" />
 
   <!-- Modules -->
   <property name="modules.enable" value="false" />
@@ -193,4 +194,12 @@
     </phingcall>
   </target>
 
+  <!-- Install the Drupal 8 site. -->
+  <target name="login"
+          description="Log into the Drupal 8 site.">
+    <phingcall target="vagrant:run">
+      <!-- After some properties for inside the Vagrant host. -->
+      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app -l ${drupal.url} uli" />
+    </phingcall>
+  </target>
 </project>
