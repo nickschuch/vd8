@@ -63,6 +63,8 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm",     :id, "--nictype1",            "Am79C973" ]
     vb.customize ["modifyvm",     :id, "--nictype2",            "Am79C973" ]
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1" ]
+    vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-on-restore", "1"]
+    vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", "1000"]
   end
 
   # Provisioners.
