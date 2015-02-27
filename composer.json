@@ -1,7 +1,8 @@
 {
+  "name": "Vagrant Drupal 8",
   "require": {
     "drush/drush": "dev-master",
-    "squizlabs/php_codesniffer": "2.0.*@dev",
+    "squizlabs/php_codesniffer": "dev-master",
     "drupal/coder": "dev-8.x-2.x"
   },
   "minimum-stability": "dev",
