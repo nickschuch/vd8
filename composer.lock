@@ -8,25 +8,25 @@
     "packages": [
         {
             "name": "d11wtq/boris",
-            "version": "dev-master",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/d11wtq/boris.git",
-                "reference": "2a0a3d3a5f34d317577f8dcd98f5f578ad85109a"
+                "url": "https://github.com/borisrepl/boris.git",
+                "reference": "125dd4e5752639af7678a22ea597115646d89c6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/d11wtq/boris/zipball/2a0a3d3a5f34d317577f8dcd98f5f578ad85109a",
-                "reference": "2a0a3d3a5f34d317577f8dcd98f5f578ad85109a",
+                "url": "https://api.github.com/repos/borisrepl/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
+                "reference": "125dd4e5752639af7678a22ea597115646d89c6e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "suggest": {
-                "ext-pcntl": "Optional Process Control extension depencency",
-                "ext-posix": "Optional POSIX extension",
-                "ext-readline": "Optional readline extension depencency"
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "ext-readline": "*"
             },
             "bin": [
                 "bin/boris"
@@ -38,7 +38,7 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2014-07-31 12:15:24"
+            "time": "2014-01-17 12:21:18"
         },
         {
             "name": "drupal/coder",
@@ -46,7 +46,7 @@
             "source": {
                 "type": "git",
                 "url": "http://git.drupal.org/project/coder.git",
-                "reference": "84906508bcc01419c58d60824d902f04b25d2e26"
+                "reference": "c2fdaad47ee194efe0aaa7e591d691da194c1a5a"
             },
             "require": {
                 "php": ">=5.2.0",
@@ -67,7 +67,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-10-31 00:22:17"
+            "time": "2014-07-18 13:14:26"
         },
         {
             "name": "drush/drush",
@@ -75,18 +75,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "ae404049b4f573024a4a7e6f5f005ca79ee63a4c"
+                "reference": "7739c9bad10c1f2ec7e9534549bf022248a1ad1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/ae404049b4f573024a4a7e6f5f005ca79ee63a4c",
-                "reference": "ae404049b4f573024a4a7e6f5f005ca79ee63a4c",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/7739c9bad10c1f2ec7e9534549bf022248a1ad1b",
+                "reference": "7739c9bad10c1f2ec7e9534549bf022248a1ad1b",
                 "shasum": ""
             },
             "require": {
-                "d11wtq/boris": "*",
+                "d11wtq/boris": "~1.0",
                 "pear/console_table": "~1.2.0",
                 "php": ">=5.3.0",
+                "symfony/var-dumper": "2.6.3",
                 "symfony/yaml": "~2.2"
             },
             "require-dev": {
@@ -100,6 +101,11 @@
                 "drush.complete.sh"
             ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "7.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Drush": "lib/"
@@ -137,11 +143,15 @@
                 {
                     "name": "Jonathan Hedstrom",
                     "email": "jhedstrom@gmail.com"
+                },
+                {
+                    "name": "Christopher Gervais",
+                    "email": "chris@ergonlogic.com"
                 }
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2014-11-06 04:56:27"
+            "time": "2015-03-06 14:44:08"
         },
         {
             "name": "pear/console_table",
@@ -204,12 +214,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "198692e8e15cb4bde41f31742209f4bf61486af3"
+                "reference": "f3fef2dd0052bf5028f10a7389ee5abbd26b3009"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/198692e8e15cb4bde41f31742209f4bf61486af3",
-                "reference": "198692e8e15cb4bde41f31742209f4bf61486af3",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/f3fef2dd0052bf5028f10a7389ee5abbd26b3009",
+                "reference": "f3fef2dd0052bf5028f10a7389ee5abbd26b3009",
                 "shasum": ""
             },
             "require": {
@@ -269,25 +279,81 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-11-04 00:15:26"
+            "time": "2014-08-06 04:29:41"
         },
         {
-            "name": "symfony/yaml",
-            "version": "dev-master",
-            "target-dir": "Symfony/Component/Yaml",
+            "name": "symfony/var-dumper",
+            "version": "v2.6.3",
+            "target-dir": "Symfony/Component/VarDumper",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "9da3813f36985a4089f7e83c601a1034d125ff69"
+                "url": "https://github.com/symfony/var-dumper.git",
+                "reference": "36af986811340fd4c1bc39cf848da388bbdd8473"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/9da3813f36985a4089f7e83c601a1034d125ff69",
-                "reference": "9da3813f36985a4089f7e83c601a1034d125ff69",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/36af986811340fd4c1bc39cf848da388bbdd8473",
+                "reference": "36af986811340fd4c1bc39cf848da388bbdd8473",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-symfony_debug": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Resources/functions/dump.php"
+                ],
+                "psr-0": {
+                    "Symfony\\Component\\VarDumper\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                }
+            ],
+            "description": "Symfony mechanism for exploring and dumping PHP variables",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "debug",
+                "dump"
+            ],
+            "time": "2015-01-01 13:28:01"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "2.6.x-dev",
+            "target-dir": "Symfony/Component/Yaml",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Yaml.git",
+                "reference": "e369824528be0bf140c69226fc501b06e12d6fa6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/e369824528be0bf140c69226fc501b06e12d6fa6",
+                "reference": "e369824528be0bf140c69226fc501b06e12d6fa6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
             },
             "type": "library",
             "extra": {
@@ -316,7 +382,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-11-03 03:55:50"
+            "time": "2015-03-07 07:40:15"
         }
     ],
     "packages-dev": [],
@@ -327,6 +393,8 @@
         "squizlabs/php_codesniffer": 20,
         "drupal/coder": 20
     },
+    "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }
