@@ -171,7 +171,6 @@
       <property name="vagrant.cmd" value='cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --class "${test.class}"' />
     </phingcall>
     <echo file="${project.basedir}/last.test.properties" message="last.test=${test.class}" />
-    </phingcall>
   </target>
 
   <!-- Test a group -->
