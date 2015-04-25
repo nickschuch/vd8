@@ -13,6 +13,7 @@ class drupal::packages {
   package { 'php5-mcrypt':         ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
   package { 'php5-curl':           ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
   package { 'php5-xdebug':         ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
+  package { 'php5-sqlite':         ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
 
   # Ensure we have an update to date set of packages.
   exec { 'apt-update':
