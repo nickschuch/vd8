@@ -18,6 +18,7 @@
   <property name="drupal.dir" value="${project.basedir}/app" />
   <property name="drupal.profile" value="standard" />
   <property name="drupal.url" value="http://d8.dev" />
+  <property name="last.test" value="Drupal\action\Tests\ConfigurationTest" />
 
   <!-- Modules -->
   <property name="modules.enable" value="false" />
@@ -42,6 +43,7 @@
 
   <!-- Provide overrides. -->
   <property file="build.properties" override="true" />
+  <property file="last.test.properties" override="true" />
 
   <!--         -->
   <!-- Targets -->
@@ -137,11 +139,13 @@
   <target name="simpletest:class"
           description="Test a test class using simpletest.">
     <input propertyName="test.class"
-           defaultValue="Drupal\action\Tests\ConfigurationTest"
+           defaultValue="${last.test}"
            message="Enter class name with namespace." />
+
     <exec command="cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --class '${test.class}'"
           logoutput="true"
           passthru="true"/>
+    <echo file="${project.basedir}/last.test.properties" message="last.test=${test.class}" />
   </target>
 
   <!-- Test a group -->
