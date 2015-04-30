@@ -1,6 +1,9 @@
 {
+  "name": "pnx/vd8",
+  "description": "Vagrant for Drupal 8",
   "require": {
     "drush/drush": "dev-master",
+    "phing/phing": "2.7.*",
     "squizlabs/php_codesniffer": "2.0.*@dev",
     "drupal/coder": "dev-8.x-2.x"
   },
