@@ -4,7 +4,7 @@
                be overridden with project specific configuration.
 -->
 
-<project name="vd8" default="prepare" phingVersion="2.4.11">
+<project name="vd8" default="install" phingVersion="2.4.11">
 
   <!--               -->
   <!--  Properties   -->
@@ -24,11 +24,11 @@
   <property name="modules.enable" value="false" />
 
   <!-- Mysql -->
-  <property name="mysql.host" value="d8.dev" />
+  <property name="mysql.host" value="localhost" />
   <property name="mysql.port" value="3306" />
-  <property name="mysql.database" value="d8" />
-  <property name="mysql.user" value="d8" />
-  <property name="mysql.pass" value="d8" />
+  <property name="mysql.database" value="local" />
+  <property name="mysql.user" value="drupal" />
+  <property name="mysql.pass" value="drupal" />
   <property name="mysql.queryString" value="mysql://${mysql.user}:${mysql.pass}@${mysql.host}/${mysql.database}" />
 
   <!-- Drush -->
@@ -57,27 +57,6 @@
           passthru="${test.passthru}" />
   </target>
 
-  <!-- Runs a command in the Vagrant host -->
-  <target name="vagrant:run"
-          if="drush.cmd"
-          description="Run a command in the vagrant host.">
-    <exec command="vagrant ssh -c '${vagrant.cmd}'"
-          logoutput="${test.output}"
-          passthru="${test.passthru}" />
-  </target>
-
-  <!-- Runs a drush command in the Vagrant host -->
-  <target name="drush:run"
-          description="Run a drush command in the vagrant host.">
-    <input propertyName="drush.command"
-           defaultValue="status"
-           message="Enter the name of the drush command eg. status" />
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app ${drush.command}"  />
-    </phingcall>
-  </target>
-
   <!-- Reinstall the Drupal 8 site. -->
   <target name="reinstall"
           depends="prepare"
@@ -91,7 +70,7 @@
           passthru="${test.passthru}" />
 
     <!-- Ensure we have a fresh settings.php with correct permissions -->
-    <exec command="sudo scp ${drupal.dir}/sites/default/default.settings.php ${drupal.dir}/sites/default/settings.php"
+    <exec command="sudo cp ${drupal.dir}/sites/default/default.settings.php ${drupal.dir}/sites/default/settings.php"
           logoutput="${test.output}"
           passthru="${test.passthru}" />
     <exec command="sudo chmod 777 ${drupal.dir}/sites/default/settings.php"
@@ -99,7 +78,7 @@
           passthru="${test.passthru}" />
 
     <!-- Ensure we have a fresh services.yml with correct permissions -->
-    <exec command="sudo scp ${drupal.dir}/sites/default/default.services.yml ${drupal.dir}/sites/default/services.yml"
+    <exec command="sudo cp ${drupal.dir}/sites/default/default.services.yml ${drupal.dir}/sites/default/services.yml"
           logoutput="${test.output}"
           passthru="${test.passthru}" />
     <exec command="sudo chmod 777 ${drupal.dir}/sites/default/services.yml"
@@ -120,19 +99,17 @@
   <!-- Install the Drupal 8 site. -->
   <target name="install"
           description="Install the Drupal 8 site.">
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app site-install ${drupal.profile} -y --db-url=${mysql.queryString} --account-mail=${drupal.email} --account-name=${drupal.user} --account-pass=${drupal.pass} --site-name=${drupal.siteName}" />
-    </phingcall>
+    <exec command="${drush.cmd} site-install ${drupal.profile} -y --db-url=${mysql.queryString} --account-mail=${drupal.email} --account-name=${drupal.user} --account-pass=${drupal.pass} --site-name=${drupal.siteName}"
+          logoutput="true"
+          passthru="true"/>
   </target>
   
   <!-- Drop the database of the Drupal 8 site. -->
   <target name="db:drop"
           description="Drop the database.">
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app sql-drop -y" />
-    </phingcall>
+    <exec command="${drush.cmd} sql-drop -y"
+          logoutput="true"
+          passthru="true"/>
   </target>
 
   <!-- Enable given modules -->
@@ -145,19 +122,17 @@
                defaultValue="views views_ui" />
       </then>
     </if>
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app en -y ${modules.list}" />
-    </phingcall>
+    <exec command="${drush.cmd} en -y ${modules.list}"
+          logoutput="true"
+          passthru="true"/>
   </target>
 
   <!-- Enable Simpletest module -->
   <target name="simpletest:enable"
           description="Enable the Testing module.">
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app en -y simpletest" />
-    </phingcall>
+    <exec command="${drush.cmd} en -y simpletest"
+          logoutput="true"
+          passthru="true"/>
   </target>
 
   <!-- Test a class -->
@@ -166,10 +141,10 @@
     <input propertyName="test.class"
            defaultValue="${last.test}"
            message="Enter class name with namespace." />
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value='cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --class "${test.class}"' />
-    </phingcall>
+
+    <exec command="cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color --class '${test.class}'"
+          logoutput="true"
+          passthru="true"/>
     <echo file="${project.basedir}/last.test.properties" message="last.test=${test.class}" />
   </target>
 
@@ -179,19 +154,17 @@
     <input propertyName="test.group"
            defaultValue="action"
            message="Enter group name." />
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color '${test.group}'" />
-    </phingcall>
+    <exec command="cd ${vagrant.dir}/app; php ./core/scripts/run-tests.sh --php `which php` --concurrency 12 --url http://d8.dev  --verbose --color '${test.group}'"
+          logoutput="true"
+          passthru="true"/>
   </target>
 
   <!-- Clean temporary tables and files created by Simpletest module. -->
   <target name="simpletest:clean"
           description="Enable the Testing module.">
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app test-clean" />
-    </phingcall>
+    <exec command="${drush.cmd} test-clean"
+          logoutput="true"
+          passthru="true"/>
   </target>
 
   <!-- PHP CS -->
@@ -200,18 +173,16 @@
     <input propertyName="phpcs.path"
            defaultValue="core"
            message="Enter the path of directory." />
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}/app; ../bin/phpcs --report=full --standard='../vendor/drupal/coder/coder_sniffer/Drupal' ${phpcs.path}" />
-    </phingcall>
+    <exec command="cd ${vagrant.dir}/app; ../bin/phpcs --report=full --standard='../vendor/drupal/coder/coder_sniffer/Drupal' ${phpcs.path}"
+          logoutput="true"
+          passthru="true"/>
   </target>
 
   <!-- Install the Drupal 8 site. -->
   <target name="login"
           description="Log into the Drupal 8 site.">
-    <phingcall target="vagrant:run">
-      <!-- After some properties for inside the Vagrant host. -->
-      <property name="vagrant.cmd" value="cd ${vagrant.dir}; ./bin/drush -r ${vagrant.dir}/app -l ${drupal.url} uli" />
-    </phingcall>
+    <exec command="${drush.cmd} -l ${drupal.url} uli"
+          logoutput="true"
+          passthru="true"/>
   </target>
 </project>
