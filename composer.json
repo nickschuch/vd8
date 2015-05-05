@@ -1,5 +1,5 @@
 {
-  "name": "pnx/vd8",
+  "name": "nickschuch/vd8",
   "description": "Vagrant for Drupal 8",
   "require": {
     "drush/drush": "dev-master",
