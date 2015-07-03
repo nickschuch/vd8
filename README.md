@@ -31,6 +31,11 @@ $ vagrant plugin install vagrant-hostsupdater
 $ vagrant plugin install vagrant-auto_network
 ```
 
+### Phing
+
+[Phing](http://pear.phing.info/) is a [pear](http://pear.php.net/) package. It is a requirement to install Drupal inside the guest.
+
+
 #### Plugins
 
 These are software versions we know work:
