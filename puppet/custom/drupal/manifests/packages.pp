@@ -5,14 +5,14 @@ class drupal::packages {
   class { 'apt': }
 
   # Repositories.
-  apt::ppa { 'ppa:ondrej/php5-oldstable': }
+  apt::ppa { 'ppa:ondrej/php5': }
 
   # Packages.
-  package { 'libapache2-mod-php5': ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
-  package { 'php5-gd':             ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
-  package { 'php5-mcrypt':         ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
-  package { 'php5-curl':           ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
-  package { 'php5-xdebug':         ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5-oldstable'] }
+  package { 'libapache2-mod-php5': ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5'] }
+  package { 'php5-gd':             ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5'] }
+  package { 'php5-mcrypt':         ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5'] }
+  package { 'php5-curl':           ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5'] }
+  package { 'php5-xdebug':         ensure => 'installed', require => Apt::Ppa['ppa:ondrej/php5'] }
 
   # Ensure we have an update to date set of packages.
   exec { 'apt-update':
