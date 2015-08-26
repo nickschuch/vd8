@@ -3,12 +3,16 @@
   "description": "Vagrant for Drupal 8",
   "require": {
     "drush/drush": "dev-master",
-    "phing/phing": "2.7.*",
-    "squizlabs/php_codesniffer": "2.0.*@dev",
-    "drupal/coder": "dev-8.x-2.x"
+    "phing/phing": "~2.12",
+    "squizlabs/php_codesniffer": "~2.3",
+    "drupal/coder": "~8.2"
   },
   "minimum-stability": "dev",
+  "prefer-stable": true,
   "config": {
     "bin-dir": "bin/"
+  },
+  "installer-paths": {
+    "vendor/drupal/{$name}": ["drupal/coder"]
   }
 }
