@@ -8,6 +8,7 @@
     "drupal/coder": "dev-8.x-2.x"
   },
   "minimum-stability": "dev",
+  "prefer-stable": true,
   "config": {
     "bin-dir": "bin/"
   }
