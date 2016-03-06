@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0ab7adb840ea76af5ed3612a93ca2b3c",
+    "hash": "0b173be5bf995daa3ddbe9a58fece3a1",
+    "content-hash": "93be105b13834ebc1316bedd72ebf68e",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -41,15 +42,22 @@
         },
         {
             "name": "drupal/coder",
-            "version": "8.2.3",
+            "version": "8.2.6",
             "source": {
                 "type": "git",
-                "url": "http://git.drupal.org/project/coder.git",
-                "reference": "fcda9b7e7cc8dc741ce01dfbeb44fd6c4cf3cde8"
+                "url": "https://github.com/klausi/coder.git",
+                "reference": "717cb8b6cb64a0e2b701542f26ee59b4d1e4ab57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/klausi/coder/zipball/717cb8b6cb64a0e2b701542f26ee59b4d1e4ab57",
+                "reference": "717cb8b6cb64a0e2b701542f26ee59b4d1e4ab57",
+                "shasum": ""
             },
             "require": {
-                "php": ">=5.2.0",
-                "squizlabs/php_codesniffer": ">=2.3.3"
+                "php": ">=5.4.0",
+                "squizlabs/php_codesniffer": ">=2.5.1",
+                "symfony/yaml": ">=2.0.0"
             },
             "require-dev": {
                 "phpunit/phpunit": ">=3.7"
@@ -60,44 +68,47 @@
                 "GPL-2.0+"
             ],
             "description": "Coder is a library to review Drupal code.",
-            "homepage": "https://drupal.org/project/coder",
+            "homepage": "https://www.drupal.org/project/coder",
             "keywords": [
                 "code review",
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-06-26 10:04:23"
+            "time": "2016-02-07 12:15:20"
         },
         {
             "name": "drush/drush",
-            "version": "dev-master",
+            "version": "8.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "559265bbd0fd1985d291b9cdfb83c011e5e38e6a"
+                "reference": "ee77dc526aa9fb26611ded18b5caef801b29aca7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/559265bbd0fd1985d291b9cdfb83c011e5e38e6a",
-                "reference": "559265bbd0fd1985d291b9cdfb83c011e5e38e6a",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/ee77dc526aa9fb26611ded18b5caef801b29aca7",
+                "reference": "ee77dc526aa9fb26611ded18b5caef801b29aca7",
                 "shasum": ""
             },
             "require": {
-                "pear/console_table": "~1.2.0",
+                "pear/console_table": "~1.3.0",
                 "php": ">=5.4.5",
-                "psy/psysh": "~0.5",
+                "psr/log": "~1.0",
+                "psy/psysh": "~0.6",
                 "symfony/var-dumper": "^2.6.3",
-                "symfony/yaml": "~2.2"
+                "symfony/yaml": "2.7.*"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3.5",
-                "symfony/process": "2.4.5"
+                "phpunit/phpunit": "4.*",
+                "symfony/process": "2.7.*"
             },
             "suggest": {
-                "drush/config-extra": "Provides configuration workflow commands, such as config-merge."
+                "drush/config-extra": "Provides configuration workflow commands, such as config-merge.",
+                "ext-pcntl": "*"
             },
             "bin": [
                 "drush",
+                "drush.launcher",
                 "drush.php",
                 "drush.bat",
                 "drush.complete.sh"
@@ -149,11 +160,19 @@
                 {
                     "name": "Christopher Gervais",
                     "email": "chris@ergonlogic.com"
+                },
+                {
+                    "name": "Dave Reid",
+                    "email": "dave@davereid.net"
+                },
+                {
+                    "name": "Damian Lee",
+                    "email": "damiankloip@googlemail.com"
                 }
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2015-08-25 22:33:27"
+            "time": "2016-02-03 20:52:22"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -244,32 +263,38 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v1.4.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "196f177cfefa0f1f7166c0a05d8255889be12418"
+                "reference": "ce5be709d59b32dd8a88c80259028759991a4206"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/196f177cfefa0f1f7166c0a05d8255889be12418",
-                "reference": "196f177cfefa0f1f7166c0a05d8255889be12418",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ce5be709d59b32dd8a88c80259028759991a4206",
+                "reference": "ce5be709d59b32dd8a88c80259028759991a4206",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
-                "php": ">=5.3"
+                "php": ">=5.4"
             },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "2.0-dev"
                 }
             },
             "autoload": {
-                "files": [
-                    "lib/bootstrap.php"
-                ]
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -285,24 +310,24 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-07-14 17:31:05"
+            "time": "2016-02-28 19:48:28"
         },
         {
             "name": "pear/console_table",
-            "version": "1.2.1",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobLoach/Console_Table.git",
-                "reference": "10d89fbbe533351dcfe5dc1e84de25d9a8395950"
+                "url": "https://github.com/pear/Console_Table.git",
+                "reference": "64100b9ee81852f4fa17823e55d0b385a544f976"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/Console_Table/zipball/10d89fbbe533351dcfe5dc1e84de25d9a8395950",
-                "reference": "10d89fbbe533351dcfe5dc1e84de25d9a8395950",
+                "url": "https://api.github.com/repos/pear/Console_Table/zipball/64100b9ee81852f4fa17823e55d0b385a544f976",
+                "reference": "64100b9ee81852f4fa17823e55d0b385a544f976",
                 "shasum": ""
             },
             "require": {
-                "php": ">=4.3.10"
+                "php": ">=5.2.0"
             },
             "suggest": {
                 "pear/Console_Color2": ">=0.1.2"
@@ -340,20 +365,20 @@
             "keywords": [
                 "console"
             ],
-            "time": "2014-10-27 10:04:49"
+            "time": "2016-01-21 16:14:31"
         },
         {
             "name": "phing/phing",
-            "version": "2.12.0",
+            "version": "2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "63a495a1f619b60404687a0a059039c5046677df"
+                "reference": "a5b10a50160c8a4744545aacb33ef158349e655c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/63a495a1f619b60404687a0a059039c5046677df",
-                "reference": "63a495a1f619b60404687a0a059039c5046677df",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/a5b10a50160c8a4744545aacb33ef158349e655c",
+                "reference": "a5b10a50160c8a4744545aacb33ef158349e655c",
                 "shasum": ""
             },
             "require": {
@@ -363,13 +388,10 @@
                 "ext-pdo_sqlite": "*",
                 "lastcraft/simpletest": "@dev",
                 "pdepend/pdepend": "2.x",
-                "pear-pear.php.net/console_getopt": "~1.3.0",
-                "pear-pear.php.net/http_request2": "2.2.x",
-                "pear-pear.php.net/net_growl": "2.7.x",
-                "pear-pear.php.net/pear_packagefilemanager": "1.7.x",
-                "pear-pear.php.net/pear_packagefilemanager2": "1.0.x",
-                "pear-pear.php.net/xml_serializer": "0.20.x",
-                "pear/pear_exception": "~1.0",
+                "pear/archive_tar": "1.4.x",
+                "pear/http_request2": "dev-trunk",
+                "pear/net_growl": "dev-trunk",
+                "pear/pear-core-minimal": "1.10.1",
                 "pear/versioncontrol_git": "@dev",
                 "pear/versioncontrol_svn": "~0.5",
                 "phpdocumentor/phpdocumentor": "2.x",
@@ -378,7 +400,8 @@
                 "phpunit/phpunit": ">=3.7",
                 "sebastian/git": "~1.0",
                 "sebastian/phpcpd": "2.x",
-                "squizlabs/php_codesniffer": "~2.2"
+                "squizlabs/php_codesniffer": "~2.2",
+                "symfony/yaml": "~2.7"
             },
             "suggest": {
                 "pdepend/pdepend": "PHP version of JDepend",
@@ -399,7 +422,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11.x-dev"
+                    "dev-master": "2.13.x-dev"
                 }
             },
             "autoload": {
@@ -432,33 +455,71 @@
                 "task",
                 "tool"
             ],
-            "time": "2015-08-24 21:02:12"
+            "time": "2015-12-04 09:45:44"
         },
         {
-            "name": "psy/psysh",
-            "version": "v0.5.2",
+            "name": "psr/log",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "aaf8772ade08b5f0f6830774a5d5c2f800415975"
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/aaf8772ade08b5f0f6830774a5d5c2f800415975",
-                "reference": "aaf8772ade08b5f0f6830774a5d5c2f800415975",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "psy/psysh",
+            "version": "v0.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/psysh.git",
+                "reference": "5e8cedbe0a3681f18782594eefc78423f8401fc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/5e8cedbe0a3681f18782594eefc78423f8401fc8",
+                "reference": "5e8cedbe0a3681f18782594eefc78423f8401fc8",
                 "shasum": ""
             },
             "require": {
                 "dnoegel/php-xdg-base-dir": "0.1",
                 "jakub-onderka/php-console-highlighter": "0.3.*",
-                "nikic/php-parser": "^1.2.1",
+                "nikic/php-parser": "^1.2.1|~2.0",
                 "php": ">=5.3.9",
                 "symfony/console": "~2.3.10|^2.4.2|~3.0",
                 "symfony/var-dumper": "~2.7|~3.0"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "~1.5",
-                "phpunit/phpunit": "~3.7|~4.0",
+                "phpunit/phpunit": "~3.7|~4.0|~5.0",
                 "squizlabs/php_codesniffer": "~2.0",
                 "symfony/finder": "~2.1|~3.0"
             },
@@ -474,15 +535,15 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.6.x-dev"
+                    "dev-develop": "0.8.x-dev"
                 }
             },
             "autoload": {
                 "files": [
                     "src/Psy/functions.php"
                 ],
-                "psr-0": {
-                    "Psy\\": "src/"
+                "psr-4": {
+                    "Psy\\": "src/Psy/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -504,26 +565,29 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2015-07-16 15:26:57"
+            "time": "2016-02-27 18:59:18"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.3.3",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "c1a26c729508f73560c1a4f767f60b8ab6b4a666"
+                "reference": "6731851d6aaf1d0d6c58feff1065227b7fda3ba8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/c1a26c729508f73560c1a4f767f60b8ab6b4a666",
-                "reference": "c1a26c729508f73560c1a4f767f60b8ab6b4a666",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/6731851d6aaf1d0d6c58feff1065227b7fda3ba8",
+                "reference": "6731851d6aaf1d0d6c58feff1065227b7fda3ba8",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
                 "ext-xmlwriter": "*",
                 "php": ">=5.1.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
             },
             "bin": [
                 "scripts/phpcs",
@@ -532,7 +596,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
@@ -578,30 +642,30 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-06-24 03:16:23"
+            "time": "2016-01-19 23:39:10"
         },
         {
             "name": "symfony/console",
-            "version": "v2.7.3",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
-                "reference": "d6cf02fe73634c96677e428f840704bfbcaec29e"
+                "url": "https://github.com/symfony/console.git",
+                "reference": "2ed5e2706ce92313d120b8fe50d1063bcfd12e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/d6cf02fe73634c96677e428f840704bfbcaec29e",
-                "reference": "d6cf02fe73634c96677e428f840704bfbcaec29e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/2ed5e2706ce92313d120b8fe50d1063bcfd12e04",
+                "reference": "2ed5e2706ce92313d120b8fe50d1063bcfd12e04",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.1",
-                "symfony/phpunit-bridge": "~2.7",
-                "symfony/process": "~2.1"
+                "symfony/event-dispatcher": "~2.8|~3.0",
+                "symfony/process": "~2.8|~3.0"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -611,13 +675,16 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Console\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -635,27 +702,87 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-28 15:18:12"
+            "time": "2016-02-28 16:24:34"
         },
         {
-            "name": "symfony/var-dumper",
-            "version": "v2.7.3",
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "e8903ebba5eb019f5886ffce739ea9e3b7519579"
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "1289d16209491b584839022f29257ad859b8532d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e8903ebba5eb019f5886ffce739ea9e3b7519579",
-                "reference": "e8903ebba5eb019f5886ffce739ea9e3b7519579",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/1289d16209491b584839022f29257ad859b8532d",
+                "reference": "1289d16209491b584839022f29257ad859b8532d",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2016-01-20 09:13:37"
+        },
+        {
+            "name": "symfony/var-dumper",
+            "version": "v2.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/var-dumper.git",
+                "reference": "19b697abe08833ddf38c3ab0cb1bfad236b13bde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/19b697abe08833ddf38c3ab0cb1bfad236b13bde",
+                "reference": "19b697abe08833ddf38c3ab0cb1bfad236b13bde",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9",
+                "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
+                "twig/twig": "~1.20|~2.0"
             },
             "suggest": {
                 "ext-symfony_debug": ""
@@ -663,7 +790,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -672,7 +799,10 @@
                 ],
                 "psr-4": {
                     "Symfony\\Component\\VarDumper\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -694,27 +824,24 @@
                 "debug",
                 "dump"
             ],
-            "time": "2015-07-28 15:18:12"
+            "time": "2016-02-13 09:21:29"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.7.3",
+            "version": "v2.7.10",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "71340e996171474a53f3d29111d046be4ad8a0ff"
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "fc0ad7a7450ed4434c9a397796a9f56199de2053"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/71340e996171474a53f3d29111d046be4ad8a0ff",
-                "reference": "71340e996171474a53f3d29111d046be4ad8a0ff",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/fc0ad7a7450ed4434c9a397796a9f56199de2053",
+                "reference": "fc0ad7a7450ed4434c9a397796a9f56199de2053",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
             },
             "type": "library",
             "extra": {
@@ -725,7 +852,10 @@
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Yaml\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -743,15 +873,13 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-28 14:07:07"
+            "time": "2016-02-23 07:38:51"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "drush/drush": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
