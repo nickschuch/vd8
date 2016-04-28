@@ -1,9 +1,6 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
 Vagrant.configure("2") do |config|
   config.vm.define 'lamp', primary: true do |lamp|
-    lamp.vm.box      = 'pnx/lamp'
+    lamp.vm.box      = 'pnx/lamp70'
     lamp.vm.hostname = 'd8.dev'
 
     # This script is a last chance for Developers to add more
