@@ -9,6 +9,6 @@ Vagrant.configure("2") do |config|
     # Examples:
     #  * Create files directories
     #  * Setup additional databases
-    # lamp.vm.provision :shell, path: "provision.sh"
+    lamp.vm.provision :shell, path: "provision.sh"
   end
 end
