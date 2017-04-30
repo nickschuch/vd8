@@ -24,7 +24,7 @@
   <property name="modules.enable" value="false" />
 
   <!-- Mysql -->
-  <property name="mysql.host" value="localhost" />
+  <property name="mysql.host" value="d8.dev" />
   <property name="mysql.port" value="3306" />
   <property name="mysql.database" value="local" />
   <property name="mysql.user" value="drupal" />
@@ -32,7 +32,7 @@
   <property name="mysql.queryString" value="mysql://${mysql.user}:${mysql.pass}@${mysql.host}/${mysql.database}" />
 
   <!-- Drush -->
-  <property name="drush.cmd" value="./bin/drush -r ${drupal.dir}" />
+  <property name="drush.cmd" value="${project.basedir}/bin/drush -r ${drupal.dir}" />
 
   <!-- Vagrant -->
   <property name="vagrant.dir" value="/vagrant" />
