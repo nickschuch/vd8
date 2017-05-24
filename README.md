@@ -51,7 +51,7 @@ $ composer install
 $ vagrant ssh
 $ phing install
 # If you come across incompatibilities with drush while running this command;
-# Please use below because drush 8.1.11 incompatibilities with Drupal 8.4.x  
+# Please use below because of drush 8.1.11 incompatibilities with Drupal 8.4.x  
 $ composer require drush/drush:9.*
 # You can run 'phing reinstall' to reinstall. This command can be run as many
 # times as you like. It provides a good workflow for developing and testing.
