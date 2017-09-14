@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  php:
+    image: previousnext/php:7.1-dev
+    # This makes the container run on the same network stack as your
+    # workstation. Meaning that you can interact on "localhost".
+    network_mode: host
+    volumes:
+      - .:/data
+    environment:
+      - SIMPLETEST_BASE_URL=http://127.0.0.1
+      - SIMPLETEST_DB=mysql://root:root@127.0.0.1/d8_testing
+      - BROWSERTEST_OUTPUT_DIRECTORY=/data/app/sites/simpletest/browser_output
+
+  db:
+    image: mariadb
+    network_mode: host
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=local
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=drupal
+    #    volumes:
+    #      - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql or sql.gz file(s) here.
+
+  mail:
+    image: mailhog/mailhog
+    network_mode: host
+
+#  varnish:
+#    image: previousnext/varnish:4.x-dev
+#    network_mode: host
+
+#  memcache:
+#    image: memcached:1.4-alpine
+#    network_mode: host
+
+#  phantomjs:
+#    image: previousnext/gastonjs:1.0.2
+#    network_mode: host
+
+#  search:
+#    image: previousnext/solr:5.x
+#    network_mode: host
