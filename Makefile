@@ -64,7 +64,18 @@ test-filter:
 	@while [ -z "$$GROUP" ]; do \
 		read -r -p "Filter group: " GROUP; \
 	done ; \
-	$(APP_ROOT)/vendor/bin/phpunit -c $(APP_ROOT)/core/phpunit.xml.dist --filter=$$GROUP;cat $(APP_ROOT)/test-output.html;echo "" > $(APP_ROOT)/test-output.html
+	$(APP_ROOT)/vendor/bin/phpunit -c $(APP_ROOT)/core/phpunit.xml --filter=$$GROUP;cat $(APP_ROOT)/test-output.html;echo "" > $(APP_ROOT)/test-output.html
+
+phantomjs: phantomjs-stop phantom-init
+	${PHANTOMJS_BIN} --ssl-protocol=any --ignore-ssl-errors=true $(APP_ROOT)/vendor/jcalderonzumba/gastonjs/src/Client/main.js 8510 1024 768 2>&1 >> /dev/null &
+	ps axo pid,command | grep phantomjs | grep -v grep | grep -v make
+
+phantom-init:
+	if [ ! -d ${PHANTOMJS_DIR} ]; then mkdir -p ${PHANTOMJS_DIR}; wget --no-check-certificate https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-$(ARCH).tar.bz2 -O ${PHANTOMJS_DIR}/phantomjs-2.1.1-linux-x86_64.tar.bz2; tar -xvf ${PHANTOMJS_DIR}/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C ${PHANTOMJS_DIR}; else echo "PhantomJS already exists"; fi
+
+phantomjs-stop:
+	ps axo pid,command | grep phantomjs | grep -v grep | grep -v make | awk '{print $$1}' | xargs -I {} kill {}
+	ps axo pid,command | grep php | grep -v grep | grep -v phpstorm | grep -v make | awk '{print $$1}' | xargs -I {} kill {}
 
 login:
 	$(DRUSH) -r $(APP_ROOT) uli --uri=$(APP_URL)
