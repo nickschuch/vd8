@@ -2,7 +2,7 @@ version: "3"
 
 services:
   php:
-    image: previousnext/php:7.1-dev
+    image: previousnext/php:7.2-dev
     # You will notice that we are forwarding port which do not belong to PHP.
     # We have to declare them here because these "sidecar" services are sharing
     # THIS containers network stack.
@@ -12,11 +12,12 @@ services:
       - "8983:8983"
       - "8025:8025"
       - "8910:8910"
+      - "9222:9222"
     volumes:
       - .:/data:cached
     environment:
       - SIMPLETEST_BASE_URL=http://127.0.0.1
-      - SIMPLETEST_DB=mysql://root:root@127.0.0.1/d8_testing
+      - SIMPLETEST_DB=mysql://drupal:drupal@127.0.0.1/local
       - BROWSERTEST_OUTPUT_DIRECTORY=/data/app/sites/simpletest/browser_output
       - MINK_DRIVER_ARGS=["http:\/\/127.0.0.1:8510", "\/tmp"]
 
@@ -48,6 +49,10 @@ services:
   mail:
     image: mailhog/mailhog
     network_mode: service:php
+
+  chrome:
+    image: blueimp/chromedriver
+    network_mode: service:app
 
 #  phantomjs:
 #    image: previousnext/gastonjs:1.0.2

@@ -7,19 +7,19 @@ PHPCS_IGNORE=*.md,*.css,*.txt
 PHPCS_COMMON_OPTIONS=--standard=vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml --extensions=$(PHPCS_EXTENSIONS) --ignore=$(PHPCS_IGNORE)
 BUILD_LOGS_DIR=$(CURDIR)/build/logs
 ARCH=$(shell uname -m)
-APP_URL=http://d8.dev
+APP_URL=http://127.0.0.1
 BROWSERTEST_OUTPUT_DIRECTORY=$(APP_ROOT)/sites/default/files
 PHANTOMJS_DIR=$(HOME)/.phantomjs
 PHANTOMJS_BIN=$(HOME)/.phantomjs/phantomjs-2.1.1-linux-$(ARCH)/bin/phantomjs
 DRUSH=$(CURDIR)/bin/drush
 DC=$(CURDIR)/bin/drupal
 SITE_NAME=Drupal8
-EMAIL=admin@d8.dev
+EMAIL=admin@127.0.0.1
 USERNAME=admin
 PASSWORD=password
 PROFILE=standard
 MODULES_ENABLE=0
-MYSQL_HOST=d8.dev
+MYSQL_HOST=127.0.0.1
 MYSQL_PORT=3306
 MYSQL_DATABASE=local
 MYSQL_USER=drupal
@@ -32,7 +32,7 @@ prepare:
 	composer install --prefer-dist
 
 install:
-	$(DRUSH) -r $(APP_ROOT) site-install $(PROFILE) -y --db-url=$(MYSQL_QUERY_STRING) --account-mail=$(EMAIL) --account-name=$(USERNAME) --account-pass=$(PASSWORD) --site-name=$(SITE_NAME) install_configure_form.site_default_country=AU install_configure_form.date_default_timezone=Australia/Sydney
+	$(DRUSH) -r $(APP_ROOT) site-install $(PROFILE) -y --db-url=$(MYSQL_QUERY_STRING) --sites-subdir="default" --account-mail=$(EMAIL) --account-name=$(USERNAME) --account-pass=$(PASSWORD) --site-name=$(SITE_NAME) install_configure_form.site_default_country=AU install_configure_form.date_default_timezone=Australia/Sydney
 
 re-install: db-drop clean-up copy-files install simple-enable login
 
@@ -91,3 +91,5 @@ phpcs:
 		read -r -p "Folder path: " FOLDER; \
 	done ; \
 	$(CURDIR)/bin/phpcs --report=full $(PHPCS_COMMON_OPTIONS) $$FOLDER
+
+-include Makefile.local

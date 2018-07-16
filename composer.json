@@ -2,14 +2,11 @@
   "name": "nickschuch/vd8",
   "description": "Vagrant for Drupal 8",
   "require": {
-    "drush/drush": "^9.0@beta"
+    "drush/drush": "~9.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "config": {
     "bin-dir": "bin/"
-  },
-  "installer-paths": {
-    "vendor/drupal/{$name}": ["drupal/coder"]
   }
 }

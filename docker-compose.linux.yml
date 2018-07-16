@@ -2,7 +2,7 @@ version: "3"
 
 services:
   php:
-    image: previousnext/php:7.1-dev
+    image: previousnext/php:7.2-dev
     # This makes the container run on the same network stack as your
     # workstation. Meaning that you can interact on "localhost".
     network_mode: host
@@ -10,8 +10,12 @@ services:
       - .:/data
     environment:
       - SIMPLETEST_BASE_URL=http://127.0.0.1
-      - SIMPLETEST_DB=mysql://root:root@127.0.0.1/d8_testing
+      - SIMPLETEST_DB=mysql://drupal:drupal@127.0.0.1/local
       - BROWSERTEST_OUTPUT_DIRECTORY=/data/app/sites/simpletest/browser_output
+      - MINK_DRIVER_ARGS=["http:\/\/127.0.0.1:8510", "\/tmp"]
+      - PHP_IDE_CONFIG=serverName=127.0.0.1
+      - PHP_XDEBUG_AUTOSTART=1
+      - XDEBUG_CONFIG=remote_host=127.0.0.1
 
   db:
     image: mariadb
@@ -39,6 +43,10 @@ services:
 #  phantomjs:
 #    image: previousnext/gastonjs:1.0.2
 #    network_mode: host
+
+  chrome:
+    image: blueimp/chromedriver
+    network_mode: host
 
 #  search:
 #    image: previousnext/solr:5.x
