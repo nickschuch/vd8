@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  app:
+    image: previousnext/php:7.2-dev
+    # You will notice that we are forwarding port which do not belong to PHP.
+    # We have to declare them here because these "sidecar" services are sharing
+    # THIS containers network stack.
+    ports:
+      - "80:80"
+      - "3306:3306"
+      - "8983:8983"
+      - "8025:8025"
+      - "8910:8910"
+      - "9222:9222"
+    volumes:
+      - .:/data:cached
+    environment:
+      - SIMPLETEST_BASE_URL=http://127.0.0.1
+      - SIMPLETEST_DB=mysql://drupal:drupal@127.0.0.1/local
+      - BROWSERTEST_OUTPUT_DIRECTORY=/data/app/sites/simpletest/browser_output
+      - MINK_DRIVER_ARGS=
+      - MINK_DRIVER_ARGS_WEBDRIVER=["chrome", null, "http:\/\/127.0.0.1:4444\/wd\/hub"]
+      - PHP_IDE_CONFIG=serverName=127.0.0.1
+      - PHP_XDEBUG_AUTOSTART=1
+      - XDEBUG_CONFIG=remote_host=127.0.0.1
+      - PATH=$PATH:/data/bin:/data/app/vendor/bin
+      - DRUSH_OPTIONS_URI=http://127.0.0.1
+
+  xdebug:
+    image: nickschuch/d4m-tcp-forwarder
+    network_mode: host
+    environment:
+      - PORT=9000
+
+  db:
+    image: mariadb
+    network_mode: service:php
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=local
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=drupal
+
+  mail:
+    image: mailhog/mailhog
+    network_mode: service:php
+
+  chrome:
+    image: selenium/standalone-chrome
+    network_mode: service:app
